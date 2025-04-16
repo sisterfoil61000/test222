@@ -21,7 +21,7 @@ import FaqSection from '../../components/WebPageComponents/FaqComponent';
 export default function WebSite() {
   const cardsStyle = useAppSelector((state) => state.style.cardsStyle);
   const bgColor = useAppSelector((state) => state.style.bgLayoutColor);
-  const projectName = 'test222';
+  const projectName = 'test223';
 
   useEffect(() => {
     const darkElement = document.querySelector('body .dark');
@@ -144,10 +144,10 @@ export default function WebSite() {
           content={`Explore our competitive pricing plans designed to suit businesses of all sizes. Choose the perfect plan to enhance your coffee business operations with ${projectName}.`}
         />
       </Head>
-      <WebSiteHeader projectName={'test222'} pages={pages} />
+      <WebSiteHeader projectName={'test223'} pages={pages} />
       <main className={`flex-grow    bg-white  rounded-none  `}>
         <HeroSection
-          projectName={'test222'}
+          projectName={'test223'}
           image={['Pricing plans on a screen']}
           mainText={`Choose Your Perfect ${projectName} Plan`}
           subTitle={`Discover flexible pricing options tailored to meet the needs of your coffee business. Whether you're a startup or an enterprise, ${projectName} has a plan for you.`}
@@ -156,20 +156,20 @@ export default function WebSite() {
         />
 
         <PricingSection
-          projectName={'test222'}
-          withBg={0}
+          projectName={'test223'}
+          withBg={1}
           features={pricing_features}
           description={description}
         />
 
         <FaqSection
-          projectName={'test222'}
+          projectName={'test223'}
           design={FaqDesigns.ACCORDION || ''}
           faqs={faqs}
           mainText={`Pricing FAQs for ${projectName} `}
         />
       </main>
-      <WebSiteFooter projectName={'test222'} pages={pages} />
+      <WebSiteFooter projectName={'test223'} pages={pages} />
     </div>
   );
 }

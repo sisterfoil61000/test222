@@ -37,7 +37,7 @@ const CategoriesData = [
   {
     name: 'Decaf',
 
-    type: 'Seasonal',
+    type: 'Organic',
   },
 ];
 
@@ -133,7 +133,7 @@ const OrdersData = [
 
     // type code here for "relation_many" field
 
-    status: 'Shipped',
+    status: 'Pending',
   },
 
   {
@@ -153,7 +153,7 @@ const OrdersData = [
 
     // type code here for "relation_many" field
 
-    status: 'Shipped',
+    status: 'Pending',
   },
 
   {
@@ -163,7 +163,7 @@ const OrdersData = [
 
     // type code here for "relation_many" field
 
-    status: 'Delivered',
+    status: 'Shipped',
   },
 ];
 
@@ -173,7 +173,7 @@ const PaymentsData = [
 
     // type code here for "relation_one" field
 
-    status: 'Refunded',
+    status: 'Pending',
   },
 
   {
@@ -181,7 +181,7 @@ const PaymentsData = [
 
     // type code here for "relation_one" field
 
-    status: 'Refunded',
+    status: 'Pending',
   },
 
   {
@@ -189,7 +189,7 @@ const PaymentsData = [
 
     // type code here for "relation_one" field
 
-    status: 'Processed',
+    status: 'Pending',
   },
 
   {
@@ -197,7 +197,7 @@ const PaymentsData = [
 
     // type code here for "relation_one" field
 
-    status: 'Refunded',
+    status: 'Processed',
   },
 ];
 
