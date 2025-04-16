@@ -1,7 +1,7 @@
 const express = require('express');
 
-const CategoriesService = require('../services/categories');
-const CategoriesDBApi = require('../db/api/categories');
+const CategoryService = require('../services/category');
+const CategoryDBApi = require('../db/api/category');
 const wrapAsync = require('../helpers').wrapAsync;
 
 const router = express.Router();
@@ -10,37 +10,32 @@ const { parse } = require('json2csv');
 
 const { checkCrudPermissions } = require('../middlewares/check-permissions');
 
-router.use(checkCrudPermissions('categories'));
+router.use(checkCrudPermissions('category'));
 
 /**
  *  @swagger
  *  components:
  *    schemas:
- *      Categories:
+ *      Category:
  *        type: object
  *        properties:
 
- *          name:
- *            type: string
- *            default: name
-
- *          
  */
 
 /**
  *  @swagger
  * tags:
- *   name: Categories
- *   description: The Categories managing API
+ *   name: Category
+ *   description: The Category managing API
  */
 
 /**
  *  @swagger
- *  /api/categories:
+ *  /api/category:
  *    post:
  *      security:
  *        - bearerAuth: []
- *      tags: [Categories]
+ *      tags: [Category]
  *      summary: Add new item
  *      description: Add new item
  *      requestBody:
@@ -52,14 +47,14 @@ router.use(checkCrudPermissions('categories'));
  *                data:
  *                  description: Data of the updated item
  *                  type: object
- *                  $ref: "#/components/schemas/Categories"
+ *                  $ref: "#/components/schemas/Category"
  *      responses:
  *        200:
  *          description: The item was successfully added
  *          content:
  *            application/json:
  *              schema:
- *                $ref: "#/components/schemas/Categories"
+ *                $ref: "#/components/schemas/Category"
  *        401:
  *          $ref: "#/components/responses/UnauthorizedError"
  *        405:
@@ -74,7 +69,7 @@ router.post(
       req.headers.referer ||
       `${req.protocol}://${req.hostname}${req.originalUrl}`;
     const link = new URL(referer);
-    await CategoriesService.create(
+    await CategoryService.create(
       req.body.data,
       req.currentUser,
       true,
@@ -91,7 +86,7 @@ router.post(
  *  post:
  *    security:
  *      - bearerAuth: []
- *    tags: [Categories]
+ *    tags: [Category]
  *    summary: Bulk import items
  *    description: Bulk import items
  *    requestBody:
@@ -104,14 +99,14 @@ router.post(
  *              description: Data of the updated items
  *              type: array
  *              items:
- *                $ref: "#/components/schemas/Categories"
+ *                $ref: "#/components/schemas/Category"
  *    responses:
  *      200:
  *        description: The items were successfully imported
  *    content:
  *      application/json:
  *        schema:
- *          $ref: "#/components/schemas/Categories"
+ *          $ref: "#/components/schemas/Category"
  *      401:
  *        $ref: "#/components/responses/UnauthorizedError"
  *      405:
@@ -127,7 +122,7 @@ router.post(
       req.headers.referer ||
       `${req.protocol}://${req.hostname}${req.originalUrl}`;
     const link = new URL(referer);
-    await CategoriesService.bulkImport(req, res, true, link.host);
+    await CategoryService.bulkImport(req, res, true, link.host);
     const payload = true;
     res.status(200).send(payload);
   }),
@@ -135,12 +130,11 @@ router.post(
 
 /**
  *  @swagger
- *  /api/categories/{id}:
-*  /api/category/{id}:
-/app/backend/src/routes/categories.js-139- *    put:
+ *  /api/category/{id}:
+ *    put:
  *      security:
  *        - bearerAuth: []
- *      tags: [Categories]
+ *      tags: [Category]
  *      summary: Update the data of the selected item
  *      description: Update the data of the selected item
  *      parameters:
@@ -163,7 +157,7 @@ router.post(
  *                data:
  *                  description: Data of the updated item
  *                  type: object
- *                  $ref: "#/components/schemas/Categories"
+ *                  $ref: "#/components/schemas/Category"
  *              required:
  *                - id
  *      responses:
@@ -172,7 +166,7 @@ router.post(
  *          content:
  *            application/json:
  *              schema:
- *                $ref: "#/components/schemas/Categories"
+ *                $ref: "#/components/schemas/Category"
  *        400:
  *          description: Invalid ID supplied
  *        401:
@@ -185,7 +179,7 @@ router.post(
 router.put(
   '/:id',
   wrapAsync(async (req, res) => {
-    await CategoriesService.update(req.body.data, req.body.id, req.currentUser);
+    await CategoryService.update(req.body.data, req.body.id, req.currentUser);
     const payload = true;
     res.status(200).send(payload);
   }),
@@ -193,11 +187,11 @@ router.put(
 
 /**
  * @swagger
- *  /api/categories/{id}:
+ *  /api/category/{id}:
  *    delete:
  *      security:
  *        - bearerAuth: []
- *      tags: [Categories]
+ *      tags: [Category]
  *      summary: Delete the selected item
  *      description: Delete the selected item
  *      parameters:
@@ -213,7 +207,7 @@ router.put(
  *          content:
  *            application/json:
  *              schema:
- *                $ref: "#/components/schemas/Categories"
+ *                $ref: "#/components/schemas/Category"
  *        400:
  *          description: Invalid ID supplied
  *        401:
@@ -226,7 +220,7 @@ router.put(
 router.delete(
   '/:id',
   wrapAsync(async (req, res) => {
-    await CategoriesService.remove(req.params.id, req.currentUser);
+    await CategoryService.remove(req.params.id, req.currentUser);
     const payload = true;
     res.status(200).send(payload);
   }),
@@ -234,11 +228,11 @@ router.delete(
 
 /**
  *  @swagger
- *  /api/categories/deleteByIds:
+ *  /api/category/deleteByIds:
  *    post:
  *      security:
  *        - bearerAuth: []
- *      tags: [Categories]
+ *      tags: [Category]
  *      summary: Delete the selected item list
  *      description: Delete the selected item list
  *      requestBody:
@@ -256,7 +250,7 @@ router.delete(
  *          content:
  *            application/json:
  *              schema:
- *                $ref: "#/components/schemas/Categories"
+ *                $ref: "#/components/schemas/Category"
  *        401:
  *          $ref: "#/components/responses/UnauthorizedError"
  *        404:
@@ -267,7 +261,7 @@ router.delete(
 router.post(
   '/deleteByIds',
   wrapAsync(async (req, res) => {
-    await CategoriesService.deleteByIds(req.body.data, req.currentUser);
+    await CategoryService.deleteByIds(req.body.data, req.currentUser);
     const payload = true;
     res.status(200).send(payload);
   }),
@@ -275,22 +269,22 @@ router.post(
 
 /**
  *  @swagger
- *  /api/categories:
+ *  /api/category:
  *    get:
  *      security:
  *        - bearerAuth: []
- *      tags: [Categories]
- *      summary: Get all categories
- *      description: Get all categories
+ *      tags: [Category]
+ *      summary: Get all category
+ *      description: Get all category
  *      responses:
  *        200:
- *          description: Categories list successfully received
+ *          description: Category list successfully received
  *          content:
  *            application/json:
  *              schema:
  *                type: array
  *                items:
- *                  $ref: "#/components/schemas/Categories"
+ *                  $ref: "#/components/schemas/Category"
  *        401:
  *          $ref: "#/components/responses/UnauthorizedError"
  *        404:
@@ -304,9 +298,9 @@ router.get(
     const filetype = req.query.filetype;
 
     const currentUser = req.currentUser;
-    const payload = await CategoriesDBApi.findAll(req.query, { currentUser });
+    const payload = await CategoryDBApi.findAll(req.query, { currentUser });
     if (filetype && filetype === 'csv') {
-      const fields = ['id', 'name'];
+      const fields = ['id'];
       const opts = { fields };
       try {
         const csv = parse(payload.rows, opts);
@@ -323,22 +317,22 @@ router.get(
 
 /**
  *  @swagger
- *  /api/categories/count:
+ *  /api/category/count:
  *    get:
  *      security:
  *        - bearerAuth: []
- *      tags: [Categories]
- *      summary: Count all categories
- *      description: Count all categories
+ *      tags: [Category]
+ *      summary: Count all category
+ *      description: Count all category
  *      responses:
  *        200:
- *          description: Categories count successfully received
+ *          description: Category count successfully received
  *          content:
  *            application/json:
  *              schema:
  *                type: array
  *                items:
- *                  $ref: "#/components/schemas/Categories"
+ *                  $ref: "#/components/schemas/Category"
  *        401:
  *          $ref: "#/components/responses/UnauthorizedError"
  *        404:
@@ -350,7 +344,7 @@ router.get(
   '/count',
   wrapAsync(async (req, res) => {
     const currentUser = req.currentUser;
-    const payload = await CategoriesDBApi.findAll(req.query, null, {
+    const payload = await CategoryDBApi.findAll(req.query, null, {
       countOnly: true,
       currentUser,
     });
@@ -361,22 +355,22 @@ router.get(
 
 /**
  *  @swagger
- *  /api/categories/autocomplete:
+ *  /api/category/autocomplete:
  *    get:
  *      security:
  *        - bearerAuth: []
- *      tags: [Categories]
- *      summary: Find all categories that match search criteria
- *      description: Find all categories that match search criteria
+ *      tags: [Category]
+ *      summary: Find all category that match search criteria
+ *      description: Find all category that match search criteria
  *      responses:
  *        200:
- *          description: Categories list successfully received
+ *          description: Category list successfully received
  *          content:
  *            application/json:
  *              schema:
  *                type: array
  *                items:
- *                  $ref: "#/components/schemas/Categories"
+ *                  $ref: "#/components/schemas/Category"
  *        401:
  *          $ref: "#/components/responses/UnauthorizedError"
  *        404:
@@ -385,7 +379,7 @@ router.get(
  *          description: Some server error
  */
 router.get('/autocomplete', async (req, res) => {
-  const payload = await CategoriesDBApi.findAllAutocomplete(
+  const payload = await CategoryDBApi.findAllAutocomplete(
     req.query.query,
     req.query.limit,
     req.query.offset,
@@ -396,11 +390,11 @@ router.get('/autocomplete', async (req, res) => {
 
 /**
  * @swagger
- *  /api/categories/{id}:
+ *  /api/category/{id}:
  *    get:
  *      security:
  *        - bearerAuth: []
- *      tags: [Categories]
+ *      tags: [Category]
  *      summary: Get selected item
  *      description: Get selected item
  *      parameters:
@@ -416,7 +410,7 @@ router.get('/autocomplete', async (req, res) => {
  *          content:
  *            application/json:
  *              schema:
- *                $ref: "#/components/schemas/Categories"
+ *                $ref: "#/components/schemas/Category"
  *        400:
  *          description: Invalid ID supplied
  *        401:
@@ -429,7 +423,7 @@ router.get('/autocomplete', async (req, res) => {
 router.get(
   '/:id',
   wrapAsync(async (req, res) => {
-    const payload = await CategoriesDBApi.findBy({ id: req.params.id });
+    const payload = await CategoryDBApi.findBy({ id: req.params.id });
 
     res.status(200).send(payload);
   }),

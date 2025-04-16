@@ -37,6 +37,7 @@ const Coffee_blendsTablesPage = () => {
     { label: 'Price', title: 'price', number: 'true' },
 
     { label: 'Categories', title: 'categories' },
+    { label: 'Category', title: 'category' },
   ]);
 
   const hasCreatePermission =

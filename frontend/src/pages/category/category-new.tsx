@@ -27,30 +27,20 @@ import { SelectField } from '../../components/SelectField';
 import { SelectFieldMany } from '../../components/SelectFieldMany';
 import { RichTextField } from '../../components/RichTextField';
 
-import { create } from '../../stores/coffee_blends/coffee_blendsSlice';
+import { create } from '../../stores/category/categorySlice';
 import { useAppDispatch } from '../../stores/hooks';
 import { useRouter } from 'next/router';
 import moment from 'moment';
 
-const initialValues = {
-  name: '',
+const initialValues = {};
 
-  price: '',
-
-  stock_level: '',
-
-  categories: [],
-
-  category: [],
-};
-
-const Coffee_blendsNew = () => {
+const CategoryNew = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
 
   const handleSubmit = async (data) => {
     await dispatch(create(data));
-    await router.push('/coffee_blends/coffee_blends-list');
+    await router.push('/category/category-list');
   };
   return (
     <>
@@ -71,42 +61,6 @@ const Coffee_blendsNew = () => {
             onSubmit={(values) => handleSubmit(values)}
           >
             <Form>
-              <FormField label='Name'>
-                <Field name='name' placeholder='Name' />
-              </FormField>
-
-              <FormField label='Price'>
-                <Field type='number' name='price' placeholder='Price' />
-              </FormField>
-
-              <FormField label='StockLevel'>
-                <Field
-                  type='number'
-                  name='stock_level'
-                  placeholder='StockLevel'
-                />
-              </FormField>
-
-              <FormField label='Categories' labelFor='categories'>
-                <Field
-                  name='categories'
-                  id='categories'
-                  itemRef={'categories'}
-                  options={[]}
-                  component={SelectFieldMany}
-                ></Field>
-              </FormField>
-
-              <FormField label='Category' labelFor='category'>
-                <Field
-                  name='category'
-                  id='category'
-                  itemRef={'category'}
-                  options={[]}
-                  component={SelectFieldMany}
-                ></Field>
-              </FormField>
-
               <BaseDivider />
               <BaseButtons>
                 <BaseButton type='submit' color='info' label='Submit' />
@@ -116,9 +70,7 @@ const Coffee_blendsNew = () => {
                   color='danger'
                   outline
                   label='Cancel'
-                  onClick={() =>
-                    router.push('/coffee_blends/coffee_blends-list')
-                  }
+                  onClick={() => router.push('/category/category-list')}
                 />
               </BaseButtons>
             </Form>
@@ -129,12 +81,12 @@ const Coffee_blendsNew = () => {
   );
 };
 
-Coffee_blendsNew.getLayout = function getLayout(page: ReactElement) {
+CategoryNew.getLayout = function getLayout(page: ReactElement) {
   return (
-    <LayoutAuthenticated permission={'CREATE_COFFEE_BLENDS'}>
+    <LayoutAuthenticated permission={'CREATE_CATEGORY'}>
       {page}
     </LayoutAuthenticated>
   );
 };
 
-export default Coffee_blendsNew;
+export default CategoryNew;

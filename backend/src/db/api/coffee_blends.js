@@ -25,9 +25,10 @@ module.exports = class Coffee_blendsDBApi {
       { transaction },
     );
 
-    await coffee_blends.setCategories(data.categories || [], {
+    await coffee_blends.setCategory(data.category || [], {
       transaction,
     });
+
 
     return coffee_blends;
   }
@@ -82,8 +83,9 @@ module.exports = class Coffee_blendsDBApi {
 
     await coffee_blends.update(updatePayload, { transaction });
 
-    if (data.categories !== undefined) {
-      await coffee_blends.setCategories(data.categories, { transaction });
+    // if (data.categories !== undefined) {
+    if (data.category !== undefined) {
+      await coffee_blends.setCategory(data.category, { transaction });
     }
 
     return coffee_blends;
@@ -154,6 +156,10 @@ module.exports = class Coffee_blendsDBApi {
       transaction,
     });
 
+    output.category = await coffee_blends.getCategory({
+      transaction,
+    });
+
     return output;
   }
 
@@ -173,6 +179,12 @@ module.exports = class Coffee_blendsDBApi {
       {
         model: db.categories,
         as: 'categories',
+        required: false,
+      },
+
+      {
+        model: db.category,
+        as: 'category',
         required: false,
       },
     ];
@@ -266,6 +278,38 @@ module.exports = class Coffee_blendsDBApi {
                       },
                       {
                         name: {
+                          [Op.or]: searchTerms.map((term) => ({
+                            [Op.iLike]: `%${term}%`,
+                          })),
+                        },
+                      },
+                    ],
+                  }
+                : undefined,
+          },
+          ...include,
+        ];
+      }
+
+      if (filter.category) {
+        const searchTerms = filter.category.split('|');
+
+        include = [
+          {
+            model: db.category,
+            as: 'category_filter',
+            required: searchTerms.length > 0,
+            where:
+              searchTerms.length > 0
+                ? {
+                    [Op.or]: [
+                      {
+                        id: {
+                          [Op.in]: searchTerms.map((term) => Utils.uuid(term)),
+                        },
+                      },
+                      {
+                        id: {
                           [Op.or]: searchTerms.map((term) => ({
                             [Op.iLike]: `%${term}%`,
                           })),

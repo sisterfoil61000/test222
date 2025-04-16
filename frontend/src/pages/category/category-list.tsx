@@ -7,21 +7,18 @@ import LayoutAuthenticated from '../../layouts/Authenticated';
 import SectionMain from '../../components/SectionMain';
 import SectionTitleLineWithButton from '../../components/SectionTitleLineWithButton';
 import { getPageTitle } from '../../config';
-import TableCoffee_blends from '../../components/Coffee_blends/TableCoffee_blends';
+import TableCategory from '../../components/Category/TableCategory';
 import BaseButton from '../../components/BaseButton';
 import axios from 'axios';
 import Link from 'next/link';
 import { useAppDispatch, useAppSelector } from '../../stores/hooks';
 import CardBoxModal from '../../components/CardBoxModal';
 import DragDropFilePicker from '../../components/DragDropFilePicker';
-import {
-  setRefetch,
-  uploadCsv,
-} from '../../stores/coffee_blends/coffee_blendsSlice';
+import { setRefetch, uploadCsv } from '../../stores/category/categorySlice';
 
 import { hasPermission } from '../../helpers/userPermissions';
 
-const Coffee_blendsTablesPage = () => {
+const CategoryTablesPage = () => {
   const [filterItems, setFilterItems] = useState([]);
   const [csvFile, setCsvFile] = useState<File | null>(null);
   const [isModalActive, setIsModalActive] = useState(false);
@@ -31,17 +28,10 @@ const Coffee_blendsTablesPage = () => {
 
   const dispatch = useAppDispatch();
 
-  const [filters] = useState([
-    { label: 'Name', title: 'name' },
-    { label: 'StockLevel', title: 'stock_level', number: 'true' },
-    { label: 'Price', title: 'price', number: 'true' },
-
-    { label: 'Categories', title: 'categories' },
-    { label: 'Category', title: 'category' },
-  ]);
+  const [filters] = useState([]);
 
   const hasCreatePermission =
-    currentUser && hasPermission(currentUser, 'CREATE_COFFEE_BLENDS');
+    currentUser && hasPermission(currentUser, 'CREATE_CATEGORY');
 
   const addFilter = () => {
     const newItem = {
@@ -57,9 +47,9 @@ const Coffee_blendsTablesPage = () => {
     setFilterItems([...filterItems, newItem]);
   };
 
-  const getCoffee_blendsCSV = async () => {
+  const getCategoryCSV = async () => {
     const response = await axios({
-      url: '/coffee_blends?filetype=csv',
+      url: '/category?filetype=csv',
       method: 'GET',
       responseType: 'blob',
     });
@@ -67,7 +57,7 @@ const Coffee_blendsTablesPage = () => {
     const blob = new Blob([response.data], { type: type });
     const link = document.createElement('a');
     link.href = window.URL.createObjectURL(blob);
-    link.download = 'coffee_blendsCSV.csv';
+    link.download = 'categoryCSV.csv';
     link.click();
   };
 
@@ -87,12 +77,12 @@ const Coffee_blendsTablesPage = () => {
   return (
     <>
       <Head>
-        <title>{getPageTitle('Coffee_blends')}</title>
+        <title>{getPageTitle('Category')}</title>
       </Head>
       <SectionMain>
         <SectionTitleLineWithButton
           icon={mdiChartTimelineVariant}
-          title='Coffee_blends'
+          title='Category'
           main
         >
           {''}
@@ -101,7 +91,7 @@ const Coffee_blendsTablesPage = () => {
           {hasCreatePermission && (
             <BaseButton
               className={'mr-3'}
-              href={'/coffee_blends/coffee_blends-new'}
+              href={'/category/category-new'}
               color='info'
               label='New Item'
             />
@@ -117,7 +107,7 @@ const Coffee_blendsTablesPage = () => {
             className={'mr-3'}
             color='info'
             label='Download CSV'
-            onClick={getCoffee_blendsCSV}
+            onClick={getCategoryCSV}
           />
 
           {hasCreatePermission && (
@@ -130,18 +120,15 @@ const Coffee_blendsTablesPage = () => {
 
           <div className='md:inline-flex items-center ms-auto'>
             <div id='delete-rows-button'></div>
-
-            <Link href={'/coffee_blends/coffee_blends-list'}>
-              Back to <span className='capitalize'>table</span>
-            </Link>
           </div>
         </CardBox>
+
         <CardBox className='mb-6' hasTable>
-          <TableCoffee_blends
+          <TableCategory
             filterItems={filterItems}
             setFilterItems={setFilterItems}
             filters={filters}
-            showGrid={true}
+            showGrid={false}
           />
         </CardBox>
       </SectionMain>
@@ -164,12 +151,12 @@ const Coffee_blendsTablesPage = () => {
   );
 };
 
-Coffee_blendsTablesPage.getLayout = function getLayout(page: ReactElement) {
+CategoryTablesPage.getLayout = function getLayout(page: ReactElement) {
   return (
-    <LayoutAuthenticated permission={'READ_COFFEE_BLENDS'}>
+    <LayoutAuthenticated permission={'READ_CATEGORY'}>
       {page}
     </LayoutAuthenticated>
   );
 };
 
-export default Coffee_blendsTablesPage;
+export default CategoryTablesPage;

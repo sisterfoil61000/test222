@@ -37,6 +37,8 @@ const rolesRoutes = require('./routes/roles');
 
 const permissionsRoutes = require('./routes/permissions');
 
+const categoryRoutes = require('./routes/category');
+
 const getBaseUrl = (url) => {
   if (!url) return '';
   return url.endsWith('/api') ? url.slice(0, -4) : url;
@@ -154,6 +156,12 @@ app.use(
   '/api/permissions',
   passport.authenticate('jwt', { session: false }),
   permissionsRoutes,
+);
+
+app.use(
+  '/api/category',
+  passport.authenticate('jwt', { session: false }),
+  categoryRoutes,
 );
 
 app.use(

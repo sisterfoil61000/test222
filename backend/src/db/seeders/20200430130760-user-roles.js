@@ -111,6 +111,7 @@ module.exports = {
       'reports',
       'roles',
       'permissions',
+      'category',
       ,
     ];
     await queryInterface.bulkInsert(
@@ -1026,6 +1027,31 @@ primary key ("roles_permissionsId", "permissionId")
         updatedAt,
         roles_permissionsId: getId('Administrator'),
         permissionId: getId('DELETE_PERMISSIONS'),
+      },
+
+      {
+        createdAt,
+        updatedAt,
+        roles_permissionsId: getId('Administrator'),
+        permissionId: getId('CREATE_CATEGORY'),
+      },
+      {
+        createdAt,
+        updatedAt,
+        roles_permissionsId: getId('Administrator'),
+        permissionId: getId('READ_CATEGORY'),
+      },
+      {
+        createdAt,
+        updatedAt,
+        roles_permissionsId: getId('Administrator'),
+        permissionId: getId('UPDATE_CATEGORY'),
+      },
+      {
+        createdAt,
+        updatedAt,
+        roles_permissionsId: getId('Administrator'),
+        permissionId: getId('DELETE_CATEGORY'),
       },
 
       {

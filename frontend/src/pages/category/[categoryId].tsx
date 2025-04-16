@@ -25,69 +25,57 @@ import { SelectFieldMany } from '../../components/SelectFieldMany';
 import { SwitchField } from '../../components/SwitchField';
 import { RichTextField } from '../../components/RichTextField';
 
-import { update, fetch } from '../../stores/coffee_blends/coffee_blendsSlice';
+import { update, fetch } from '../../stores/category/categorySlice';
 import { useAppDispatch, useAppSelector } from '../../stores/hooks';
 import { useRouter } from 'next/router';
 import { saveFile } from '../../helpers/fileSaver';
 import dataFormatter from '../../helpers/dataFormatter';
 import ImageField from '../../components/ImageField';
 
-const EditCoffee_blends = () => {
+const EditCategory = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
-  const initVals = {
-    name: '',
-
-    price: '',
-
-    stock_level: '',
-
-    categories: [],
-
-    category: [],
-  };
+  const initVals = {};
   const [initialValues, setInitialValues] = useState(initVals);
 
-  const { coffee_blends } = useAppSelector((state) => state.coffee_blends);
+  const { category } = useAppSelector((state) => state.category);
 
-  const { coffee_blendsId } = router.query;
-
-  useEffect(() => {
-    dispatch(fetch({ id: coffee_blendsId }));
-  }, [coffee_blendsId]);
+  const { categoryId } = router.query;
 
   useEffect(() => {
-    if (typeof coffee_blends === 'object') {
-      setInitialValues(coffee_blends);
+    dispatch(fetch({ id: categoryId }));
+  }, [categoryId]);
+
+  useEffect(() => {
+    if (typeof category === 'object') {
+      setInitialValues(category);
     }
-  }, [coffee_blends]);
+  }, [category]);
 
   useEffect(() => {
-    if (typeof coffee_blends === 'object') {
+    if (typeof category === 'object') {
       const newInitialVal = { ...initVals };
 
-      Object.keys(initVals).forEach(
-        (el) => (newInitialVal[el] = coffee_blends[el]),
-      );
+      Object.keys(initVals).forEach((el) => (newInitialVal[el] = category[el]));
 
       setInitialValues(newInitialVal);
     }
-  }, [coffee_blends]);
+  }, [category]);
 
   const handleSubmit = async (data) => {
-    await dispatch(update({ id: coffee_blendsId, data }));
-    await router.push('/coffee_blends/coffee_blends-list');
+    await dispatch(update({ id: categoryId, data }));
+    await router.push('/category/category-list');
   };
 
   return (
     <>
       <Head>
-        <title>{getPageTitle('Edit coffee_blends')}</title>
+        <title>{getPageTitle('Edit category')}</title>
       </Head>
       <SectionMain>
         <SectionTitleLineWithButton
           icon={mdiChartTimelineVariant}
-          title={'Edit coffee_blends'}
+          title={'Edit category'}
           main
         >
           {''}
@@ -99,44 +87,6 @@ const EditCoffee_blends = () => {
             onSubmit={(values) => handleSubmit(values)}
           >
             <Form>
-              <FormField label='Name'>
-                <Field name='name' placeholder='Name' />
-              </FormField>
-
-              <FormField label='Price'>
-                <Field type='number' name='price' placeholder='Price' />
-              </FormField>
-
-              <FormField label='StockLevel'>
-                <Field
-                  type='number'
-                  name='stock_level'
-                  placeholder='StockLevel'
-                />
-              </FormField>
-
-              <FormField label='Categories' labelFor='categories'>
-                <Field
-                  name='categories'
-                  id='categories'
-                  component={SelectFieldMany}
-                  options={initialValues.categories}
-                  itemRef={'categories'}
-                  showField={'name'}
-                ></Field>
-              </FormField>
-
-              <FormField label='Category' labelFor='category'>
-                <Field
-                  name='category'
-                  id='category'
-                  component={SelectFieldMany}
-                  options={initialValues.category}
-                  itemRef={'category'}
-                  showField={'id'}
-                ></Field>
-              </FormField>
-
               <BaseDivider />
               <BaseButtons>
                 <BaseButton type='submit' color='info' label='Submit' />
@@ -146,9 +96,7 @@ const EditCoffee_blends = () => {
                   color='danger'
                   outline
                   label='Cancel'
-                  onClick={() =>
-                    router.push('/coffee_blends/coffee_blends-list')
-                  }
+                  onClick={() => router.push('/category/category-list')}
                 />
               </BaseButtons>
             </Form>
@@ -159,12 +107,12 @@ const EditCoffee_blends = () => {
   );
 };
 
-EditCoffee_blends.getLayout = function getLayout(page: ReactElement) {
+EditCategory.getLayout = function getLayout(page: ReactElement) {
   return (
-    <LayoutAuthenticated permission={'UPDATE_COFFEE_BLENDS'}>
+    <LayoutAuthenticated permission={'UPDATE_CATEGORY'}>
       {page}
     </LayoutAuthenticated>
   );
 };
 
-export default EditCoffee_blends;
+export default EditCategory;

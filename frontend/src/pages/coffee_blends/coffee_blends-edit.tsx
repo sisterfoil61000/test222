@@ -43,6 +43,8 @@ const EditCoffee_blendsPage = () => {
     stock_level: '',
 
     categories: [],
+
+    category: [],
   };
   const [initialValues, setInitialValues] = useState(initVals);
 
@@ -119,6 +121,17 @@ const EditCoffee_blendsPage = () => {
                   options={initialValues.categories}
                   itemRef={'categories'}
                   showField={'name'}
+                ></Field>
+              </FormField>
+
+              <FormField label='Category' labelFor='category'>
+                <Field
+                  name='category'
+                  id='category'
+                  component={SelectFieldMany}
+                  options={initialValues.category}
+                  itemRef={'category'}
+                  showField={'id'}
                 ></Field>
               </FormField>
 

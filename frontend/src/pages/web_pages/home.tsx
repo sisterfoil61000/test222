@@ -180,7 +180,7 @@ export default function WebSite() {
         <FeaturesSection
           projectName={'test222'}
           image={['Coffee shop management tools']}
-          withBg={0}
+          withBg={1}
           features={features_points}
           mainText={`Unlock the Power of ${projectName}`}
           subTitle={`Explore the key features that make ${projectName} the ultimate solution for your coffee business. Streamline operations and enhance customer satisfaction.`}

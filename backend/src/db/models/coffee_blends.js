@@ -40,22 +40,23 @@ module.exports = function (sequelize, DataTypes) {
   );
 
   coffee_blends.associate = (db) => {
-    db.coffee_blends.belongsToMany(db.categories, {
-      as: 'categories',
+
+    db.coffee_blends.belongsToMany(db.category, {
+      as: 'category',
       foreignKey: {
-        name: 'coffee_blends_categoriesId',
+        name: 'coffee_blends_categoryId',
       },
       constraints: false,
-      through: 'coffee_blendsCategoriesCategories',
+      through: 'coffee_blendsCategoryCategory',
     });
 
-    db.coffee_blends.belongsToMany(db.categories, {
-      as: 'categories_filter',
+    db.coffee_blends.belongsToMany(db.category, {
+      as: 'category_filter',
       foreignKey: {
-        name: 'coffee_blends_categoriesId',
+        name: 'coffee_blends_categoryId',
       },
       constraints: false,
-      through: 'coffee_blendsCategoriesCategories',
+      through: 'coffee_blendsCategoryCategory',
     });
 
     /// loop through entities and it's fields, and if ref === current e[name] and create relation has many on parent entity

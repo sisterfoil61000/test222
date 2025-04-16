@@ -13,29 +13,31 @@ const Payments = db.payments;
 
 const Reports = db.reports;
 
+const Category = db.category;
+
 const CategoriesData = [
   {
     name: 'Organic',
-
-    type: 'FairTrade',
-  },
-
-  {
-    name: 'Fair Trade',
-
-    type: 'Seasonal',
-  },
-
-  {
-    name: 'Seasonal',
 
     type: 'Organic',
   },
 
   {
+    name: 'Fair Trade',
+
+    type: 'Organic',
+  },
+
+  {
+    name: 'Seasonal',
+
+    type: 'Seasonal',
+  },
+
+  {
     name: 'Decaf',
 
-    type: 'FairTrade',
+    type: 'Seasonal',
   },
 ];
 
@@ -48,6 +50,8 @@ const CoffeeBlendsData = [
     stock_level: 100,
 
     // type code here for "relation_many" field
+
+    // type code here for "relation_many" field
   },
 
   {
@@ -56,6 +60,8 @@ const CoffeeBlendsData = [
     price: 10.99,
 
     stock_level: 150,
+
+    // type code here for "relation_many" field
 
     // type code here for "relation_many" field
   },
@@ -68,6 +74,8 @@ const CoffeeBlendsData = [
     stock_level: 200,
 
     // type code here for "relation_many" field
+
+    // type code here for "relation_many" field
   },
 
   {
@@ -76,6 +84,8 @@ const CoffeeBlendsData = [
     price: 11.99,
 
     stock_level: 120,
+
+    // type code here for "relation_many" field
 
     // type code here for "relation_many" field
   },
@@ -123,7 +133,7 @@ const OrdersData = [
 
     // type code here for "relation_many" field
 
-    status: 'Pending',
+    status: 'Shipped',
   },
 
   {
@@ -153,7 +163,7 @@ const OrdersData = [
 
     // type code here for "relation_many" field
 
-    status: 'Shipped',
+    status: 'Delivered',
   },
 ];
 
@@ -163,7 +173,7 @@ const PaymentsData = [
 
     // type code here for "relation_one" field
 
-    status: 'Processed',
+    status: 'Refunded',
   },
 
   {
@@ -179,7 +189,7 @@ const PaymentsData = [
 
     // type code here for "relation_one" field
 
-    status: 'Pending',
+    status: 'Processed',
   },
 
   {
@@ -187,7 +197,7 @@ const PaymentsData = [
 
     // type code here for "relation_one" field
 
-    status: 'Pending',
+    status: 'Refunded',
   },
 ];
 
@@ -216,6 +226,10 @@ const ReportsData = [
     // type code here for "relation_many" field
   },
 ];
+
+const CategoryData = [{}, {}, {}, {}];
+
+// Similar logic for "relation_many"
 
 // Similar logic for "relation_many"
 
@@ -333,7 +347,11 @@ module.exports = {
 
     await Reports.bulkCreate(ReportsData);
 
+    await Category.bulkCreate(CategoryData);
+
     await Promise.all([
+      // Similar logic for "relation_many"
+
       // Similar logic for "relation_many"
 
       // Similar logic for "relation_many"
@@ -362,5 +380,7 @@ module.exports = {
     await queryInterface.bulkDelete('payments', null, {});
 
     await queryInterface.bulkDelete('reports', null, {});
+
+    await queryInterface.bulkDelete('category', null, {});
   },
 };

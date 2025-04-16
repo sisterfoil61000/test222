@@ -173,7 +173,7 @@ export default function WebSite() {
         <FeaturesSection
           projectName={'test222'}
           image={['Coffee brewing equipment']}
-          withBg={0}
+          withBg={1}
           features={features_points}
           mainText={`Unleash the Potential of ${projectName}`}
           subTitle={`Discover the unique features that make our coffee products stand out. Experience quality, variety, and convenience with ${projectName}.`}
@@ -189,7 +189,7 @@ export default function WebSite() {
 
         <PricingSection
           projectName={'test222'}
-          withBg={0}
+          withBg={1}
           features={pricing_features}
           description={description}
         />

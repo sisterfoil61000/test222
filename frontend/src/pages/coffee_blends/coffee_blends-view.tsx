@@ -110,6 +110,39 @@ const Coffee_blendsView = () => {
             </CardBox>
           </>
 
+          <>
+            <p className={'block font-bold mb-2'}>Category</p>
+            <CardBox
+              className='mb-6 border border-gray-300 rounded overflow-hidden'
+              hasTable
+            >
+              <div className='overflow-x-auto'>
+                <table>
+                  <thead>
+                    <tr></tr>
+                  </thead>
+                  <tbody>
+                    {coffee_blends.category &&
+                      Array.isArray(coffee_blends.category) &&
+                      coffee_blends.category.map((item: any) => (
+                        <tr
+                          key={item.id}
+                          onClick={() =>
+                            router.push(
+                              `/category/category-view/?id=${item.id}`,
+                            )
+                          }
+                        ></tr>
+                      ))}
+                  </tbody>
+                </table>
+              </div>
+              {!coffee_blends?.category?.length && (
+                <div className={'text-center py-4'}>No data</div>
+              )}
+            </CardBox>
+          </>
+
           <BaseDivider />
 
           <BaseButton
