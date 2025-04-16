@@ -21,7 +21,7 @@ import FaqSection from '../../components/WebPageComponents/FaqComponent';
 export default function WebSite() {
   const cardsStyle = useAppSelector((state) => state.style.cardsStyle);
   const bgColor = useAppSelector((state) => state.style.bgLayoutColor);
-  const projectName = 'test222';
+  const projectName = 'test223';
 
   useEffect(() => {
     const darkElement = document.querySelector('body .dark');
@@ -103,10 +103,10 @@ export default function WebSite() {
           content={`Reach out to us for any inquiries, support, or feedback. Our team is here to assist you with all your coffee business needs.`}
         />
       </Head>
-      <WebSiteHeader projectName={'test222'} pages={pages} />
+      <WebSiteHeader projectName={'test223'} pages={pages} />
       <main className={`flex-grow    bg-white  rounded-none  `}>
         <HeroSection
-          projectName={'test222'}
+          projectName={'test223'}
           image={['Customer service representative smiling']}
           mainText={`Connect with ${projectName} Today`}
           subTitle={`We're here to help with any questions or support you need. Reach out to ${projectName} and let us assist you in your coffee journey.`}
@@ -115,21 +115,21 @@ export default function WebSite() {
         />
 
         <FaqSection
-          projectName={'test222'}
+          projectName={'test223'}
           design={FaqDesigns.ACCORDION || ''}
           faqs={faqs}
           mainText={`Frequently Asked Questions about ${projectName} `}
         />
 
         <ContactFormSection
-          projectName={'test222'}
+          projectName={'test223'}
           design={ContactFormDesigns.WITH_IMAGE || ''}
           image={['Email icon with coffee cup']}
           mainText={`Reach Out to ${projectName} `}
           subTitle={`We're available 24/7 to assist you. Send us a message and our team will respond promptly to address your needs.`}
         />
       </main>
-      <WebSiteFooter projectName={'test222'} pages={pages} />
+      <WebSiteFooter projectName={'test223'} pages={pages} />
     </div>
   );
 }

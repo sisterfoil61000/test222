@@ -27,7 +27,7 @@ import ContactFormSection from '../../components/WebPageComponents/ContactFormCo
 export default function WebSite() {
   const cardsStyle = useAppSelector((state) => state.style.cardsStyle);
   const bgColor = useAppSelector((state) => state.style.bgLayoutColor);
-  const projectName = 'test222';
+  const projectName = 'test223';
 
   useEffect(() => {
     const darkElement = document.querySelector('body .dark');
@@ -166,10 +166,10 @@ export default function WebSite() {
           content={`Discover the ultimate toolkit for managing your online coffee business. From inventory to customer orders, streamline your operations and boost sales with our comprehensive solution.`}
         />
       </Head>
-      <WebSiteHeader projectName={'test222'} pages={pages} />
+      <WebSiteHeader projectName={'test223'} pages={pages} />
       <main className={`flex-grow    bg-white  rounded-none  `}>
         <HeroSection
-          projectName={'test222'}
+          projectName={'test223'}
           image={['Coffee beans and laptop']}
           mainText={`Elevate Your Coffee Business Today`}
           subTitle={`Discover the ultimate toolkit for managing your online coffee business. Streamline operations, boost sales, and delight customers with ${projectName}.`}
@@ -178,9 +178,9 @@ export default function WebSite() {
         />
 
         <FeaturesSection
-          projectName={'test222'}
+          projectName={'test223'}
           image={['Coffee shop management tools']}
-          withBg={1}
+          withBg={0}
           features={features_points}
           mainText={`Unlock the Power of ${projectName}`}
           subTitle={`Explore the key features that make ${projectName} the ultimate solution for your coffee business. Streamline operations and enhance customer satisfaction.`}
@@ -188,28 +188,28 @@ export default function WebSite() {
         />
 
         <TestimonialsSection
-          projectName={'test222'}
+          projectName={'test223'}
           design={TestimonialsDesigns.MULTI_CARD_DISPLAY || ''}
           testimonials={testimonials}
           mainText={`What Our Users Say About ${projectName} `}
         />
 
         <PricingSection
-          projectName={'test222'}
+          projectName={'test223'}
           withBg={1}
           features={pricing_features}
           description={description}
         />
 
         <ContactFormSection
-          projectName={'test222'}
+          projectName={'test223'}
           design={ContactFormDesigns.WITH_IMAGE || ''}
           image={['Contact form with coffee cup']}
           mainText={`Get in Touch with ${projectName} `}
           subTitle={`Reach out to us anytime for inquiries or support. Our team at ${projectName} is here to assist you promptly.`}
         />
       </main>
-      <WebSiteFooter projectName={'test222'} pages={pages} />
+      <WebSiteFooter projectName={'test223'} pages={pages} />
     </div>
   );
 }

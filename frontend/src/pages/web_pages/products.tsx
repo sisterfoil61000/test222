@@ -26,7 +26,7 @@ import PricingSection from '../../components/WebPageComponents/PricingComponent'
 export default function WebSite() {
   const cardsStyle = useAppSelector((state) => state.style.cardsStyle);
   const bgColor = useAppSelector((state) => state.style.bgLayoutColor);
-  const projectName = 'test222';
+  const projectName = 'test223';
 
   useEffect(() => {
     const darkElement = document.querySelector('body .dark');
@@ -159,10 +159,10 @@ export default function WebSite() {
           content={`Browse our diverse range of coffee blends and products. From single-origin to espresso mixes, find the perfect cup to satisfy your coffee cravings.`}
         />
       </Head>
-      <WebSiteHeader projectName={'test222'} pages={pages} />
+      <WebSiteHeader projectName={'test223'} pages={pages} />
       <main className={`flex-grow    bg-white  rounded-none  `}>
         <HeroSection
-          projectName={'test222'}
+          projectName={'test223'}
           image={['Assorted coffee beans and cups']}
           mainText={`Discover Our Exquisite Coffee Collection`}
           subTitle={`Explore a world of flavors with our diverse range of coffee blends. From rich espressos to smooth single-origin brews, ${projectName} offers the perfect cup for every palate.`}
@@ -171,9 +171,9 @@ export default function WebSite() {
         />
 
         <FeaturesSection
-          projectName={'test222'}
+          projectName={'test223'}
           image={['Coffee brewing equipment']}
-          withBg={1}
+          withBg={0}
           features={features_points}
           mainText={`Unleash the Potential of ${projectName}`}
           subTitle={`Discover the unique features that make our coffee products stand out. Experience quality, variety, and convenience with ${projectName}.`}
@@ -181,20 +181,20 @@ export default function WebSite() {
         />
 
         <GalleryPortfolioSection
-          projectName={'test222'}
+          projectName={'test223'}
           images={images}
           mainText={`Explore Our Coffee Creations`}
           design={GalleryPortfolioDesigns.OVERLAPPING_CENTRAL_IMAGE || ''}
         />
 
         <PricingSection
-          projectName={'test222'}
-          withBg={1}
+          projectName={'test223'}
+          withBg={0}
           features={pricing_features}
           description={description}
         />
       </main>
-      <WebSiteFooter projectName={'test222'} pages={pages} />
+      <WebSiteFooter projectName={'test223'} pages={pages} />
     </div>
   );
 }
