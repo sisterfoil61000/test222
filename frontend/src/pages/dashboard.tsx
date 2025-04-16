@@ -120,51 +120,6 @@ const Dashboard = () => {
           {''}
         </SectionTitleLineWithButton>
 
-        {hasPermission(currentUser, 'CREATE_ROLES') && (
-          <WidgetCreator
-            currentUser={currentUser}
-            isFetchingQuery={isFetchingQuery}
-            setWidgetsRole={setWidgetsRole}
-            widgetsRole={widgetsRole}
-          />
-        )}
-        {!!rolesWidgets.length &&
-          hasPermission(currentUser, 'CREATE_ROLES') && (
-            <p className='  text-gray-500 dark:text-gray-400 mb-4'>
-              {`${widgetsRole?.role?.label || 'Users'}'s widgets`}
-            </p>
-          )}
-
-        <div className='grid grid-cols-1 gap-6 lg:grid-cols-4 mb-6 grid-flow-dense'>
-          {(isFetchingQuery || loading) && (
-            <div
-              className={` ${
-                corners !== 'rounded-full' ? corners : 'rounded-3xl'
-              } dark:bg-dark-900 text-lg leading-tight   text-gray-500 flex items-center ${cardsStyle} dark:border-dark-700 p-6`}
-            >
-              <BaseIcon
-                className={`${iconsColor} animate-spin mr-5`}
-                w='w-16'
-                h='h-16'
-                size={48}
-                path={icon.mdiLoading}
-              />{' '}
-              Loading widgets...
-            </div>
-          )}
-
-          {rolesWidgets &&
-            rolesWidgets.map((widget) => (
-              <SmartWidget
-                key={widget.id}
-                userId={currentUser?.id}
-                widget={widget}
-                roleId={widgetsRole?.role?.value || ''}
-                admin={hasPermission(currentUser, 'CREATE_ROLES')}
-              />
-            ))}
-        </div>
-
         {!!rolesWidgets.length && <hr className='my-6  ' />}
 
         <div
